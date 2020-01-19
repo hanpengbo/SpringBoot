@@ -1,10 +1,9 @@
 package cn.hpb.springbootsecurity.entity;
 
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author hanpengbo
@@ -14,11 +13,17 @@ public class User implements UserDetails,Serializable {
     private Integer id;
     private String username;
     private String password;
+    private List<Role> authorities;
+    
+    public void setAuthorities(List<Role> authorities) {
+        this.authorities = authorities;
+    }
     
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+    public List<Role> getAuthorities() {
+        return authorities;
     }
+   
     @Override
     public boolean isAccountNonExpired() {
         return true;

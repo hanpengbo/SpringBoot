@@ -6,6 +6,9 @@
 </head>
 <body>
 <h1 th:text = "'你好,'+ ${username1}"></h1>
+<div>
+    <a href="/role" >检查角色权限</a>
+</div>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
 </form>
