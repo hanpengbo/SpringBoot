@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,11 +26,18 @@ public class LoginController {
     private Logger logger = LoggerFactory.getLogger(LoginController.class);
     private ObjectMapper objectMapper = new ObjectMapper();
     
-    @RequestMapping("/role")
+    @RequestMapping(value = "/role")
     @ResponseBody
-    @PreAuthorize("hasRole('role02')")
-    public String hashRole(){
+    @PreAuthorize("hasRole('role01')")
+    public String hashRole1(){
         return "该用户拥有角色 role01";
+    }
+    
+    @RequestMapping(value = "/permission")
+    @ResponseBody
+    @PreAuthorize("hasPermission('user','update')")
+    public String hasPermission1(){
+        return "该用户对资源‘user’有查的权限";
     }
     
     @RequestMapping(value = "/hello")
